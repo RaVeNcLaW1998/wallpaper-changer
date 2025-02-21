@@ -1,12 +1,19 @@
 import requests
 import os
+from dotenv import load_dotenv
 import ctypes  # For Windows wallpaper change
 from PIL import Image  # For image conversion
 
-# Unsplash API settings
-ACCESS_KEY = (
-    "_rt8qlf3VTM4HsyIGiUgTHynxhJQhuBrepSeoNZFFaM"  # Replace with your Unsplash API key
-)
+# Load environment variables from .env file
+load_dotenv()
+
+# Get API Key
+ACCESS_KEY = os.getenv("UNSPLASH_API_KEY")
+
+if not ACCESS_KEY:
+    print("Error: API key not found. Make sure you have a .env file.")
+    exit(1)
+
 UNSPLASH_URL = "https://api.unsplash.com/photos/random"
 
 
